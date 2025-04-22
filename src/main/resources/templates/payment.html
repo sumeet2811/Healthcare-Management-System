@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment - Hospital Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-header h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .payment-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .payment-label {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .payment-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .payment-amount {
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 15px;
+        }
+
+        .payment-method label {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .payment-button {
+            width: 100%;
+            padding: 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .payment-button:hover {
+            background: #2980b9;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        .secure-badge i {
+            margin-right: 5px;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>Payment Details</h1>
+            <p>Complete your appointment booking</p>
+        </div>
+
+        <div class="payment-details">
+            <div class="payment-row">
+                <span class="payment-label">Doctor</span>
+                <span class="payment-value" th:text="'Dr. ' + ${doctorName}">Dr. Name</span>
+            </div>
+            <div class="payment-row">
+                <span class="payment-label">Date</span>
+                <span class="payment-value" th:text="${appointmentDate}">Date</span>
+            </div>
+            <div class="payment-row">
+                <span class="payment-label">Total Amount</span>
+                <span class="payment-amount" th:text="'₹' + ${appointmentCharge}">₹500</span>
+            </div>
+        </div>
+
+        <form action="processPayment" method="post">
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <input type="radio" name="paymentMode" id="cash" value="CASH" required>
+                    <label for="cash">Cash Payment</label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" name="paymentMode" id="card" value="CARD">
+                    <label for="card">Credit/Debit Card</label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" name="paymentMode" id="upi" value="UPI">
+                    <label for="upi">UPI Payment</label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" name="paymentMode" id="netbanking" value="NET_BANKING">
+                    <label for="netbanking">Net Banking</label>
+                </div>
+            </div>
+
+            <button type="submit" class="payment-button">Pay Now</button>
+
+            <div class="secure-badge">
+                <i>🔒</i> Secure Payment Gateway
+            </div>
+        </form>
+    </div>
+</body>
+</html> 
