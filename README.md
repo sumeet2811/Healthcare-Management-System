@@ -1,51 +1,78 @@
-# Healthcare Appointment System - Fixes
+# 🏥 Healthcare Management System (Spring MVC)
 
-## Issues Fixed
+A comprehensive Healthcare Management System built using *Spring MVC, applying various **design patterns* and *software engineering principles* to ensure maintainability, scalability, and clean code structure.
 
-1. **Form Binding Issue**: Updated the form in ShowAvailableDoctorsSchedulePage.html to properly bind to the Schedule object.
-2. **Controller Initialization**: Fixed the PatientController to properly initialize the command2 object.
-3. **Error Handling**: Added better error handling in the AppointmentServiceImpl.
-4. **Stored Procedure**: Created an updated version of the book_appointment stored procedure.
+---
 
-## How to Apply the Fixes
+## ✅ Features
 
-1. **Update the Stored Procedure**:
-   - Open your MySQL client (e.g., MySQL Workbench)
-   - Connect to your database
-   - Run the SQL script in `src/main/resources/update_procedure.sql`
+- *Patient Management*: Register, view, and manage patient profiles  
+- *Doctor Management*: Register, view, and manage doctor profiles  
+- *Appointment Scheduling*: Book, reschedule, and cancel appointments  
+- *Payment Processing*: Process payments with multiple modes  
+- *Schedule Management*: Doctors can manage availability  
+- *User Authentication*: Secure login for patients and doctors  
 
-2. **Rebuild the Application**:
-   ```
-   mvn clean package
-   ```
+---
 
-3. **Run the Application**:
-   ```
-   mvn spring-boot:run
-   ```
+## 🛠 Technology Stack
 
-## Testing the Appointment Booking
+- *Backend*: Java, Spring MVC, Spring Data JPA  
+- *Frontend*: HTML, CSS, JavaScript, Thymeleaf  
+- *Database*: MySQL  
+- *Build Tool*: Maven  
 
-1. Login as a patient
-2. Go to "Request Appointment"
-3. Select a date
-4. From the list of available doctors, enter a doctor ID in the form
-5. Click "Book Appointment"
+---
 
-## Troubleshooting
+## 🧠 Design Patterns & Principles
 
-If you still encounter issues:
+### SOLID Principles
+- *Single Responsibility* – Each class has a specific responsibility  
+- *Open/Closed* – Open for extension, closed for modification  
+- *Liskov Substitution* – Subclasses should be substitutable for base classes  
+- *Interface Segregation* – Interfaces are tailored to client needs  
+- *Dependency Inversion* – High-level modules depend on abstractions  
 
-1. Check the database tables to ensure they match the entity classes:
-   - appointments
-   - procedureappointment
-   - patient
-   - doctor
-   - regular_schedule
+### Architectural Patterns
+- *MVC* – Model-View-Controller  
+- *DAO Pattern* – For database operations  
+- *Repository Pattern* – For standard CRUD operations  
+- *Service Layer Pattern* – For business logic abstraction  
 
-2. Verify that the stored procedure was created successfully:
-   ```sql
-   SHOW PROCEDURE STATUS WHERE Name = 'book_appointment';
-   ```
+### Other Patterns
+- *Factory Pattern* – For object creation using Spring  
+- *Singleton Pattern* – For shared services/DAOs  
+- *DTO Pattern* – For data transfer between layers  
+- *Template Method Pattern* – For standardized processes  
+- *Transaction Management Pattern* – Ensures data consistency  
 
-3. Check the application logs for any errors. 
+---
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Java 8 or higher  
+- Maven 3.6 or higher  
+- MySQL 5.7 or higher  
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/sumeet2811/Healthcare-Management-System
+cd Hospital-Management-System-MVC
+
+# Configure your DB in application.properties
+# Example:
+# spring.datasource.url=jdbc:mysql://localhost:3306/hospital_db
+# spring.datasource.username=root
+# spring.datasource.password=yourpassword
+
+# Build the project
+mvn clean install
+
+# Run the application
+mvn spring-boot:run
